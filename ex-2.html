@@ -1,0 +1,209 @@
+<!-- index.html (User Website) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Satkhira Bushra Hospital</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #0d47a1;
+      color: white;
+      padding: 10px 20px;
+    }
+	
+	
+	
+	/* Label styling */
+label {
+  font-size: 25px;
+  color: #0d47a1;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Doctor select box styling */
+select#doctorSelect {
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  padding: 08px;
+  border: 2px solid #00ffff;
+  border-radius: 02px;
+  background-color: #ffffff;
+  box-shadow: 0 0 05px #00ffff;
+  transition: 0.3s ease;
+  outline: none;
+}
+
+/* Hover & focus effects */
+select#doctorSelect:hover,
+select#doctorSelect:focus {
+  box-shadow: 0 0 08px red;
+  border-color: red;
+}
+
+
+button[type="submit"] {
+  height: 55px;
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #0d47a1;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #00ffff;
+  transition: 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #1565c0;
+  box-shadow: 0 0 25px red;
+}
+
+
+
+
+
+
+    .logo-circle {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #00ffff; /* optional: neon border effect */
+  box-shadow: 0 0 15px #00ffff; /* optional: neon glow */
+  transition: box-shadow 0.3s ease;
+}
+
+.logo-circle:hover {
+  box-shadow: 0 0 25px red; /* red glow on hover */
+}
+
+    form {
+      background: #ffffff;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label, select, input, textarea, button {
+      display: block;
+	  height: 20px;
+	  padding: 5px;
+	  font-size: 12px;
+	  margin-bottom: 40px;
+      width: 100%;
+    }
+    #history {
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center; gap: 10px">
+      <a href= "https://scontent.fdac31-1.fna.fbcdn.net/v/t39.30808-6/481982226_1618974612120978_2548743963363318022_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=wGyW6y1I5N8Q7kNvwGklCeH&_nc_oc=AdlG2QbKV8KByfD7hf69oG_7RcOTKW0E-vs5q-TFdJjBKdFZSZcxzVuSHN4LKQMHeTY&_nc_zt=23&_nc_ht=scontent.fdac31-1.fna&_nc_gid=h3jZcjLO_JgQDeDJARf8-Q&oh=00_AfLjoSIfOB5a01O3RvMJDQYgw5o1wZAjzXzoYwkJm7Y97A&oe=6842FE9A">
+  <img src="123.jpg" alt="Logo" class="logo-circle">
+</a>
+
+
+      <h2>সাতক্ষীরা বুশরা হাসপাতাল।</h2>
+    </div>
+    <div>
+      <a href="admin.html" style="color: white; text-decoration: underline">Admin Login</a>
+    </div>
+  </header>
+
+  <form id="appointmentForm">
+    <label>রোগির নাম: <input type="text" id="patientName" required /></label>
+    <label>বয়স: <input type="number" id="age" required /></label>
+    <label>মোবাইল নাম্বার: <input type="tel" id="mobile" required /></label>
+    <label>ডাক্তারের নাম বাঁছুন:
+      <select id="doctorSelect" required></select>
+    </label>
+    <label>তারিখ: <input type="date" id="appointmentDate" required /></label>
+    <label>বিস্তারিত লিখুন: <textarea id="note"></textarea></label>
+    <button type="submit">সাবমিট করুন...</button>
+  </form>
+
+  <div id="history">
+    <h3>আপনার দেওয়া সিরিয়াল চেক করুন </h3>
+    <label>তারিখ সিলেক্ট করুন <input type="date" id="filterDate" /></label>
+    <div id="historyList"></div>
+  </div>
+
+  <script>
+    const sections = JSON.parse(localStorage.getItem('doctorSections') || '{}');
+
+    function renderDoctors() {
+      const doctorSelect = document.getElementById('doctorSelect');
+      doctorSelect.innerHTML = '';
+      for (const section in sections) {
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = section;
+        sections[section].forEach(doc => {
+          const option = document.createElement('option');
+          option.value = doc;
+          option.textContent = doc;
+          optgroup.appendChild(option);
+        });
+        doctorSelect.appendChild(optgroup);
+      }
+    }
+
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = {
+        name: patientName.value,
+        age: age.value,
+        mobile: mobile.value,
+        doctor: doctorSelect.value,
+        date: appointmentDate.value,
+        note: note.value
+      };
+      const records = JSON.parse(localStorage.getItem('appointments') || '[]');
+      records.push(data);
+      localStorage.setItem('appointments', JSON.stringify(records));
+      alert('Appointment Saved!');
+      this.reset();
+      loadHistory();
+    });
+
+    document.getElementById('filterDate').addEventListener('change', loadHistory);
+
+    function loadHistory() {
+      const date = document.getElementById('filterDate').value;
+      const records = JSON.parse(localStorage.getItem('appointments') || '[]');
+      const list = document.getElementById('historyList');
+      list.innerHTML = '';
+      const filtered = records.filter(r => r.date === date);
+      if (filtered.length === 0) {
+        list.innerHTML = '<p>No Appointments Found for this date.</p>';
+      } else {
+        filtered.forEach(r => {
+          const div = document.createElement('div');
+          div.innerHTML = `<strong>${r.name}</strong> (${r.age}) - ${r.mobile} with ${r.doctor}<br>Note: ${r.note}`;
+          div.style.marginBottom = '10px';
+          div.style.padding = '10px';
+          div.style.border = '1px solid #ccc';
+          list.appendChild(div);
+        });
+      }
+    }
+
+    renderDoctors();
+    loadHistory();
+  </script>
+</body>
+</html>

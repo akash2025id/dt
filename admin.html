@@ -1,0 +1,177 @@
+<!-- admin.html (Admin Panel With Secret Code Login) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - Satkhira Bushra Hospital</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background-color: #fff8f0; }
+    h2 { color: #0d47a1; }
+    .box { background: #fff; padding: 15px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    input, textarea, select, button { display: block; margin: 10px 0; width: 100%; padding: 8px; }
+    .doctor-list, .appointment-list { margin-top: 10px; }
+    .item { padding: 10px; background: #f4f4f4; margin-bottom: 5px; border-radius: 5px; }
+    .item span { display: inline-block; margin-right: 10px; }
+    .item button { margin-left: 10px; }
+    #adminContent { display: none; }
+  </style>
+</head>
+<body>
+  <h2>Admin Panel</h2>
+
+  <!-- 🔐 Secret Code Login -->
+  <div class="box" id="loginBox">
+    <h3>Enter Secret Code</h3>
+    <input type="password" id="secretCode" placeholder="Enter Admin Secret Code" />
+    <button onclick="checkSecretCode()">Login</button>
+    <p id="loginMessage" style="color: red;"></p>
+  </div>
+
+  <!-- 🔧 Admin Content (Hidden Until Login) -->
+  <div id="adminContent">
+    <!-- Section & Doctor Management -->
+    <div class="box">
+      <h3>Manage Doctor Sections</h3>
+      <input type="text" id="newSection" placeholder="New Section Name (e.g., Medicine Doctor)" />
+      <button onclick="addSection()">Add Section</button>
+      <div id="sectionList"></div>
+    </div>
+
+    <div class="box">
+      <h3>Add Doctor to Section</h3>
+      <select id="sectionSelect"></select>
+      <input type="text" id="newDoctor" placeholder="Doctor Name (e.g., Dr. Manosh)" />
+      <button onclick="addDoctor()">Add Doctor</button>
+      <div id="doctorList"></div>
+    </div>
+
+    <!-- Appointment Management -->
+    <div class="box">
+      <h3>Appointments</h3>
+      <label>Filter by Date: <input type="date" id="adminFilterDate" onchange="loadAppointments()"></label>
+      <div class="appointment-list" id="adminAppointmentList"></div>
+    </div>
+  </div>
+
+  <script>
+    const SECRET = "abuhurira265#";
+
+    function checkSecretCode() {
+      const code = document.getElementById("secretCode").value;
+      if (code === SECRET) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("adminContent").style.display = "block";
+        renderSectionList();
+        renderSectionSelect();
+        renderDoctorList();
+      } else {
+        document.getElementById("loginMessage").innerText = "❌ Wrong secret code!";
+      }
+    }
+
+    let sections = JSON.parse(localStorage.getItem('doctorSections') || '{}');
+
+    function saveSections() {
+      localStorage.setItem('doctorSections', JSON.stringify(sections));
+      renderSectionList();
+      renderSectionSelect();
+      renderDoctorList();
+    }
+
+    function addSection() {
+      const name = document.getElementById('newSection').value.trim();
+      if (name && !sections[name]) {
+        sections[name] = [];
+        saveSections();
+        document.getElementById('newSection').value = '';
+      }
+    }
+
+    function deleteSection(name) {
+      if (confirm(`Delete section: ${name}?`)) {
+        delete sections[name];
+        saveSections();
+      }
+    }
+
+    function renderSectionList() {
+      const container = document.getElementById('sectionList');
+      container.innerHTML = '';
+      for (const name in sections) {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `<span>${name}</span><button onclick="deleteSection('${name}')">Delete</button>`;
+        container.appendChild(div);
+      }
+    }
+
+    function renderSectionSelect() {
+      const select = document.getElementById('sectionSelect');
+      select.innerHTML = '';
+      for (const name in sections) {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        select.appendChild(option);
+      }
+    }
+
+    function addDoctor() {
+      const section = document.getElementById('sectionSelect').value;
+      const docName = document.getElementById('newDoctor').value.trim();
+      if (docName) {
+        sections[section].push(docName);
+        saveSections();
+        document.getElementById('newDoctor').value = '';
+      }
+    }
+
+    function deleteDoctor(section, name) {
+      if (confirm(`Delete Doctor: ${name}?`)) {
+        sections[section] = sections[section].filter(d => d !== name);
+        saveSections();
+      }
+    }
+
+    function renderDoctorList() {
+      const container = document.getElementById('doctorList');
+      container.innerHTML = '';
+      for (const section in sections) {
+        sections[section].forEach(doc => {
+          const div = document.createElement('div');
+          div.className = 'item';
+          div.innerHTML = `<span>${section}: ${doc}</span><button onclick="deleteDoctor('${section}', '${doc}')">Delete</button>`;
+          container.appendChild(div);
+        });
+      }
+    }
+
+    function loadAppointments() {
+      const date = document.getElementById('adminFilterDate').value;
+      const records = JSON.parse(localStorage.getItem('appointments') || '[]');
+      const filtered = records.filter(r => r.date === date);
+      const list = document.getElementById('adminAppointmentList');
+      list.innerHTML = '';
+
+      if (filtered.length === 0) {
+        list.innerHTML = '<p>No appointments for this date.</p>';
+      } else {
+        filtered.forEach((r, index) => {
+          const div = document.createElement('div');
+          div.className = 'item';
+          div.innerHTML = `<strong>${r.name}</strong> (${r.age}) - ${r.mobile}<br>Doctor: ${r.doctor}<br>Note: ${r.note}<br><button onclick="deleteAppointment('${r.name}', '${r.date}', '${r.mobile}')">Delete</button>`;
+          list.appendChild(div);
+        });
+      }
+    }
+
+    function deleteAppointment(name, date, mobile) {
+      const records = JSON.parse(localStorage.getItem('appointments') || '[]');
+      const updated = records.filter(r => !(r.name === name && r.date === date && r.mobile === mobile));
+      localStorage.setItem('appointments', JSON.stringify(updated));
+      loadAppointments();
+    }
+  </script>
+</body>
+</html>
