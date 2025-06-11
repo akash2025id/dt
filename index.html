@@ -1,215 +1,31 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Satkhira Bushra Hospital</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f8ff;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #0d47a1;
-      color: white;
-      padding: 10px 20px;
-    }
-
-    label {
-      font-size: 25px;
-      color: #0d47a1;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    select#doctorSelect {
-      width: 100%;
-      height: 40px;
-      font-size: 18px;
-      padding: 08px;
-      border: 2px solid #00ffff;
-      border-radius: 02px;
-      background-color: #ffffff;
-      box-shadow: 0 0 05px #00ffff;
-      transition: 0.3s ease;
-      outline: none;
-    }
-
-    select#doctorSelect:hover,
-    select#doctorSelect:focus {
-      box-shadow: 0 0 08px red;
-      border-color: red;
-    }
-
-    button[type="submit"] {
-      height: 55px;
-      width: 100%;
-      font-size: 18px;
-      font-weight: bold;
-      background-color: #0d47a1;
-      color: #ffffff;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 0 15px #00ffff;
-      transition: 0.3s ease;
-    }
-
-    button[type="submit"]:hover {
-      background-color: #1565c0;
-      box-shadow: 0 0 25px red;
-    }
-
-    .logo-circle {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 2px solid #00ffff;
-      box-shadow: 0 0 15px #00ffff;
-      transition: box-shadow 0.3s ease;
-    }
-
-    .logo-circle:hover {
-      box-shadow: 0 0 25px red;
-    }
-
-    form {
-      background: #ffffff;
-      padding: 20px;
-      margin: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    label, select, input, textarea, button {
-      display: block;
-      height: 20px;
-      padding: 5px;
-      font-size: 12px;
-      margin-bottom: 40px;
-      width: 100%;
-    }
-
-    #history {
-      margin: 20px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Doctors</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div style="display: flex; align-items: center; gap: 10px">
-      <a href="https://scontent.fdac31-1.fna.fbcdn.net/...">
-        <img src="123.jpg" alt="Logo" class="logo-circle">
-      </a>
-      <h2>à¦¸à¦¾à¦¤à¦•à§à¦·à§€à¦°à¦¾ à¦¬à§à¦¶à¦°à¦¾ à¦¹à¦¾à¦¸à¦ªà¦¾à¦¤à¦¾à¦²à¥¤</h2>
+  <div class="header">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9z3-Jpc6b_ht_YC0682G1lc3lFM9KsWJgWQ&s" alt="circle img" class="circle-img">
+    <h1>সাতক্ষীরা বুশরা হাসপাতাল।</h1>
+	<h4>খুলনা রোড, পলাশপোল সাতক্ষীরা।</h4>
+  </div>
+  <div class="container">
+    <div class="main-content">
+      <div id="doctor-cards" class="doctor-grid"></div>
+      <div id="doctor-details"></div>
     </div>
-    <div>
-      <a href="admin.html" style="color: white; text-decoration: underline">Admin Login</a>
+
+    <div class="right-fixed-card">
+      <h3>সিরিয়াল দিতে নাম্বারে কল দিন।</h3>
+      <a href="tel:01741605101"><p>01741-605101</p></a>
+      <p style="font-size: 14px;">২৪ ঘন্টা ও সপ্তাহে ৭ দিন খোলা থাকে।</p>
     </div>
-  </header>
-
-  <!-- Manual Doctor Entry Section -->
-  <script>
-    // ONLY EDIT THIS PART TO ADD/EDIT DOCTORS & THEIR SECTIONS
-    const sections = {
-      "Medicine": ["Dr. Manosh Kumer Mondal. * md- Medicine *", "Dr. Shoriful Alam Sohel. * fcps- Medicine *"],
-      "Surgery": ["Dr. Shoriful Islam. * dmc- Surgery *", "Dr. Monower Hossen. * fcps- Surgery *","Dr. MD. Ahsanul Islam Kallol. * fcps- Surgery *","Dr. MD. Asaduzzaman. * ms- Colorectocal*"],
-      "Orthopedic": ["Dr. Probir Kumer Das. * ms- Ortho-surgery *", "Dr. Enamul Hafiz Polash. * ms- ortho-surgery*","Dr. GM. Alamgir Kabir. * ms- Ortho-surgery*","DR. Md. Mehedi Hasan. * FCPS- Ortho-Surgery*"],
-      "Cardiology": ["Dr. Suman Kumer Das. * MACP- Cardiology*", "Dr. Ahsanul Kobir Shahin. * MRCP- Medicine*"],
-	  "Urology": ["Dr. Humayan Kabir Apu. * MS- Urology*", "Dr. Raseduzaman. * ms- urology*","DR. Romiz Ahmed."],
-	  "Neurology": ["Dr. Ashraful Islam", "Dr. Nur Mohammod"],
-	  "Nefrology": ["Dr. Afjalul basar. * DMC *",],
-	  "Ear, Nose, and Throat-Surgery": ["Dr. GM. Faruquzzaman. * ENT- Surgery *", "Dr. Zahidul Islam. * ENT- Surgery *"],
-	  "Dermatologist": ["Dr. Musaddik Hossen Khan. * MD *", "Dr. Nasir Uddin"],
-	  "Palmonology": ["Dr. Ahad Murshid"],
-	  "Pediatric": ["Dr. Abu Sayeed Shuvo", "Dr. Ashim Kumer Das"],
-	  "Gynecology": ["Dr. Sharmin Feroz", "Dr. Kaniz Fatema Dina"],
-	  "Gastroenterologist": ["Dr. Birendra Nath Saha", "Dr. Shamim Hossen"]
-    };
-  </script>
-
-  <form id="appointmentForm">
-    <label>à¦°à§‹à¦—à¦¿à¦° à¦¨à¦¾à¦®: <input type="text" id="patientName" required /></label>
-    <label>à¦¬à§Ÿà¦¸: <input type="number" id="age" required /></label>
-    <label>à¦®à§‹à¦¬à¦¾à¦‡à¦² à¦¨à¦¾à¦®à§à¦¬à¦¾à¦°: <input type="tel" id="mobile" required /></label>
-    <label>à¦¡à¦¾à¦•à§à¦¤à¦¾à¦°à§‡à¦° à¦¨à¦¾à¦® à¦¬à¦¾à¦à¦›à§à¦¨:
-      <select id="doctorSelect" required></select>
-    </label>
-    <label>à¦¤à¦¾à¦°à¦¿à¦–: <input type="date" id="appointmentDate" required /></label>
-    <label>à¦¬à¦¿à¦¸à§à¦¤à¦¾à¦°à¦¿à¦¤ à¦²à¦¿à¦–à§à¦¨: <textarea id="note"></textarea></label>
-    <button type="submit">à¦¸à¦¾à¦¬à¦®à¦¿à¦Ÿ à¦•à¦°à§à¦¨...</button>
-  </form>
-
-  <div id="history">
-    <h3>à¦†à¦ªà¦¨à¦¾à¦° à¦¦à§‡à¦“à§Ÿà¦¾ à¦¸à¦¿à¦°à¦¿à§Ÿà¦¾à¦² à¦šà§‡à¦• à¦•à¦°à§à¦¨ </h3>
-    <label>à¦¤à¦¾à¦°à¦¿à¦– à¦¸à¦¿à¦²à§‡à¦•à§à¦Ÿ à¦•à¦°à§à¦¨ <input type="date" id="filterDate" /></label>
-    <div id="historyList"></div>
   </div>
 
-  <script>
-    function renderDoctors() {
-      const doctorSelect = document.getElementById('doctorSelect');
-      doctorSelect.innerHTML = '';
-      for (const section in sections) {
-        const optgroup = document.createElement('optgroup');
-        optgroup.label = section;
-        sections[section].forEach(doc => {
-          const option = document.createElement('option');
-          option.value = doc;
-          option.textContent = doc;
-          optgroup.appendChild(option);
-        });
-        doctorSelect.appendChild(optgroup);
-      }
-    }
-
-    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const data = {
-        name: patientName.value,
-        age: age.value,
-        mobile: mobile.value,
-        doctor: doctorSelect.value,
-        date: appointmentDate.value,
-        note: note.value
-      };
-      const records = JSON.parse(localStorage.getItem('appointments') || '[]');
-      records.push(data);
-      localStorage.setItem('appointments', JSON.stringify(records));
-      alert('Appointment Saved!');
-      this.reset();
-      loadHistory();
-    });
-
-    document.getElementById('filterDate').addEventListener('change', loadHistory);
-
-    function loadHistory() {
-      const date = document.getElementById('filterDate').value;
-      const records = JSON.parse(localStorage.getItem('appointments') || '[]');
-      const list = document.getElementById('historyList');
-      list.innerHTML = '';
-      const filtered = records.filter(r => r.date === date);
-      if (filtered.length === 0) {
-        list.innerHTML = '<p>No Appointments Found for this date.</p>';
-      } else {
-        filtered.forEach(r => {
-          const div = document.createElement('div');
-          div.innerHTML = `<strong>${r.name}</strong> (${r.age}) - ${r.mobile} with ${r.doctor}<br>Note: ${r.note}`;
-          div.style.marginBottom = '10px';
-          div.style.padding = '10px';
-          div.style.border = '1px solid #ccc';
-          list.appendChild(div);
-        });
-      }
-    }
-
-    renderDoctors();
-    loadHistory();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
