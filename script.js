@@ -111,7 +111,7 @@ function showDoctorDetails(index) {
     </div>
   `;
 
-  window.scrollTo({ top: 130, behavior: 'smooth' });
+  window.scrollTo({ top: 135, behavior: 'smooth' });
   window.location.hash = `doctor-${index}`;
 }
 
