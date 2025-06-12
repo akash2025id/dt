@@ -1,4 +1,3 @@
-<!-- script.js -->
 const doctors = [
   {
     name: "Dr. Mohsena Khanam",
@@ -19,8 +18,8 @@ const doctors = [
     hospital: "Satkhira Medical College",
     diseases: "Medicine related treatment",
     fee: "New: ৳৫০০ | Old: ৳৩০০",
-    chamber: "Satkhira Bushra hospital.",
-    schedule: "শনি-শুক্রবার (সকাল 7:00AM ও দুপুর 2:00PM)"
+    chamber: "Satkhira Bushra hospital",
+    schedule: "শনি-শুক্রবার (সকাল ৭:০০AM ও দুপুর ২:০০PM)"
   },
   {
     name: "Dr. Fahmida Yasmin",
@@ -31,203 +30,21 @@ const doctors = [
     diseases: "Pregnancy care, infertility, PCOS",
     fee: "New: ৳600 | Old: ৳400",
     chamber: "Labaid Dhanmondi",
-    schedule: "Sun to Wed (10:00AM - 1:00PM)"
+    schedule: "Sun to Wed (10:00AM - 1:00PM)",
+	call: "017471605101"
   },
-  
-  
-  {
+  // 👇 Keep the placeholder doctors as-is or customize later
+  ...Array(17).fill().map(() => ({
     name: "Dr.",
     photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
     degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
+    specialist: "Specialist",
+    hospital: "Medical College",
+    diseases: "Related treatment",
+    fee: "New: ৳ | Old: ৳",
+    chamber: "Hospital",
     schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  {
-    name: "Dr.",
-    photo: "https://png.pngtree.com/png-clipart/20220911/original/pngtree-male-doctor-avatar-icon-illustration-png-image_8537702.png",
-    degree: "MBBS, MS (ENT)",
-    specialist: " Specialist",
-    hospital: " Medical College",
-    diseases: " related treatment",
-    fee: "New: ৳ | Old: ৳ ",
-    chamber: " Hospital",
-    schedule: "Mon, Wed, Sat (3:00PM - 6:00PM)"
-  },
-  
-  
+  }))
 ];
 
 const doctorCardsEl = document.getElementById("doctor-cards");
@@ -247,7 +64,14 @@ function showDoctorList() {
       </div>
     `;
   });
+
+  // ✅ fixedCard ডিভটি লুকানো হবে এখানে
+  const fixedCardEl = document.getElementById('fixedCard');
+  if (fixedCardEl) {
+    fixedCardEl.style.display = 'none';
+  }
 }
+
 
 function showDoctorDetails(index) {
   const doctor = doctors[index];
@@ -269,10 +93,10 @@ function showDoctorDetails(index) {
       </div>
     </div>
 
-    <button onclick="showDoctorList()" style="margin-top:20px;padding:10px 20px;background:#00695c;color:white;border:none;border-radius:5px;cursor:pointer;">← Back to All Doctors</button>
+    <button onclick="showDoctorList()" style="margin-top:20px;padding:10px 20px;background:#00695c;color:white;border:none;border-radius:5px;cursor:pointer;">← সকল ডাক্তার দেখুন</button>
 
     <div class="related-doctors">
-      <h3>Other Doctors</h3>
+      <h3>অন্যান্য ডাক্তারগণ</h3>
       <div class="doctor-grid">
         ${doctors.map((doc, i) => i !== index ? `
           <div class="doctor-card-simple" onclick="showDoctorDetails(${i})">
@@ -286,7 +110,20 @@ function showDoctorDetails(index) {
       </div>
     </div>
   `;
+
+  window.scrollTo({ top: 120, behavior: 'smooth' });
+  window.location.hash = `doctor-${index}`;
 }
 
-// Show list on load
-showDoctorList();
+// 👉 Ensure the correct doctor is shown if URL has a hash
+window.addEventListener('load', () => {
+  const hash = window.location.hash;
+  if (hash && hash.startsWith('#doctor-')) {
+    const index = parseInt(hash.split('-')[1]);
+    if (!isNaN(index)) {
+      showDoctorDetails(index);
+      return;
+    }
+  }
+  showDoctorList();
+});
