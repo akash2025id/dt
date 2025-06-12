@@ -69,6 +69,10 @@ body {
 .doctor-details p {
   margin: 5px 0;
 }
+.mobile-no {
+	color: red;
+	background: yellow;
+}
 .related-doctors {
   margin-top: 40px;
 }
@@ -84,9 +88,10 @@ body {
 }
 .right-fixed-card {
   position: fixed;
-  top: 25px;
-  right: 20px;
   width: 250px;
+  height: 150px;
+  left: 900px;
+  margin-left: 30px;
   background-color: #e0f2f1;
   border: 2px solid #00695c;
   border-radius: 10px;
@@ -94,6 +99,21 @@ body {
   color: #004d40;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .right-fixed-card {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+}
+
+
+
 .right-fixed-card h3 {
   margin-top: 0;
   color: #00695c;
@@ -115,4 +135,3 @@ body {
     margin-top: 20px;
   }
 }
-
